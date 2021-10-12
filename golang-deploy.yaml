@@ -18,25 +18,25 @@ spec:
         app: golang
     spec:
       containers:
-      - image: golang
+      - image: yoichi00/container-ren:go-gin
         name: golang
-        # env:
-        # - name: DB_USER
-        #   valueFrom:
-        #     configMapKeyRef:
-        #       name: common-env
-        #       key: DB_USER
-        # - name: DB_PASSWORD
-        #   valueFrom:
-        #     secretKeyRef:
-        #       name: common-env
-        #       key: DB_PASSWORD
-        # - name: DB_NAME
-        #   valueFrom:
-        #     configMapKeyRef:
-        #       name: common-env
-        #       key: DB_NAME
-        # - name: DB_HOST
-        #   value: management-db
+        env:
+        - name: DB_USER
+          valueFrom:
+            configMapKeyRef:
+              name: common-env
+              key: DB_USER
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: common-env
+              key: DB_PASSWORD
+        - name: DB_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: common-env
+              key: DB_NAME
+        - name: DB_HOST
+          value: management-db
         resources: {}
 status: {}
