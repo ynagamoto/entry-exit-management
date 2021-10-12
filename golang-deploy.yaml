@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: golang
+  name: golang
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: golang
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: golang
+    spec:
+      containers:
+      - image: golang
+        name: golang
+        # env:
+        # - name: DB_USER
+        #   valueFrom:
+        #     configMapKeyRef:
+        #       name: common-env
+        #       key: DB_USER
+        # - name: DB_PASSWORD
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: common-env
+        #       key: DB_PASSWORD
+        # - name: DB_NAME
+        #   valueFrom:
+        #     configMapKeyRef:
+        #       name: common-env
+        #       key: DB_NAME
+        # - name: DB_HOST
+        #   value: management-db
+        resources: {}
+status: {}
