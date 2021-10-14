@@ -3,40 +3,40 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    app: golang
-  name: golang
+    app: go-gin
+  name: go-gin
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: golang
+      app: go-gin
   strategy: {}
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: golang
+        app: go-gin
     spec:
       containers:
       - image: yoichi00/container-ren:go-gin
-        name: golang
+        name: go-gin
         env:
         - name: DB_USER
           valueFrom:
             configMapKeyRef:
               name: common-env
-              key: DB_USER
+              key: MARIADB_USER
         - name: DB_PASSWORD
           valueFrom:
             secretKeyRef:
               name: common-env
-              key: DB_PASSWORD
+              key: MARIADB_PASSWORD
         - name: DB_NAME
           valueFrom:
             configMapKeyRef:
               name: common-env
-              key: DB_NAME
-        - name: DB_HOST
-          value: management-db
+              key: MARIADB_DATABASE
+        # - name: DB_HOST
+        #  value: management-db
         resources: {}
 status: {}

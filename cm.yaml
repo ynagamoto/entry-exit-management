@@ -1,7 +1,7 @@
 apiVersion: v1
 data:
-  DB_NAME: management
-  DB_USER: myuser
+  MARIADB_DATABASE: management
+  MARIADB_USER: myuser
   DB_DRIVER: mysql
   DB_PROTOCOL: tcp(management-db:3306)
 kind: ConfigMap

@@ -18,8 +18,8 @@ spec:
         app: db
     spec:
       containers:
-      - image: mysql
-        name: db
+      - image: mariadb
+        name: mariadb
         envFrom:
         - configMapRef:
             name: common-env
