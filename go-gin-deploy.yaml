@@ -36,7 +36,7 @@ spec:
             configMapKeyRef:
               name: common-env
               key: MARIADB_DATABASE
-        # - name: DB_HOST
-        #  value: management-db
+        - name: DB_HOST
+          value: management-db
         resources: {}
 status: {}

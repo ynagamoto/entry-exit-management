@@ -3,6 +3,8 @@ data:
   MARIADB_DATABASE: management
   MARIADB_USER: myuser
   DB_DRIVER: mysql
+  DB_USER: myuser
+  DB_NAME: management
   DB_PROTOCOL: tcp(management-db:3306)
 kind: ConfigMap
 metadata:

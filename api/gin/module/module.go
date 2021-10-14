@@ -23,8 +23,7 @@ type Log struct {
 */
 
 func DBConnect() (db *sql.DB) {
-	// dbDriver := os.Getenv("DB_DRIVER")
-  dbDriver := "mysql"
+  dbDriver := os.Getenv("DB_DRIVER")
 	dbUser := os.Getenv("DB_USER")
 	dbPasswd := os.Getenv("DB_PASSWORD")
 	dbName := os.Getenv("DB_NAME")
