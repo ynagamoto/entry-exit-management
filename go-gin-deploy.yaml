@@ -20,22 +20,15 @@ spec:
       containers:
       - image: yoichi00/container-ren:go-gin
         name: go-gin
+        envFrom:
+        - configMapRef:
+            name: common-env
         env:
-        - name: DB_USER
-          valueFrom:
-            configMapKeyRef:
-              name: common-env
-              key: MARIADB_USER
         - name: DB_PASSWORD
           valueFrom:
             secretKeyRef:
               name: common-env
-              key: MARIADB_PASSWORD
-        - name: DB_NAME
-          valueFrom:
-            configMapKeyRef:
-              name: common-env
-              key: MARIADB_DATABASE
+              key: DB_PASSWORD
         - name: DB_HOST
           value: management-db
         resources: {}
