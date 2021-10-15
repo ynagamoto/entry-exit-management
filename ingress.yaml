@@ -1,12 +1,20 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: go-gin
+  name: management-system
 spec:
   rules:
   - host: chat.192.168.99.109.nip.io
     http:
       paths:
-      - backend:
+      - path: /api
+        backend:
           serviceName: go-gin
           servicePort: 8080
+      - path: /app 
+        backend:
+          serviceName: node-react
+          servicePort: 80
+  backend:
+    serviceName: node-react
+    servicePort: 80

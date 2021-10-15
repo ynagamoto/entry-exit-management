@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: node-react
+  name: node-react
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: node-react
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: node-react
+    spec:
+      containers:
+      - image: yoichi00/container-ren:node-react
+        name: node-react
+        env:
+        - name: API_HOST
+          value: management-api
+        resources: {}
+status: {}
