@@ -6,17 +6,6 @@ export default function index({ posts }) {
   return (
     <dvi>
       <h1>Hello Next.js</h1>
-      <h2>JSON 一覧</h2>
-        <ul>
-          <li>{posts.Status}</li>
-          <li>{posts.DB}</li>
-        </ul>
     </dvi>
   )
-}
-
-export async function getServerSideProps() {
-  const res = await fetch('http://management-api/');
-  const posts = await res.json();
-  return { props: { posts  }  };
 }

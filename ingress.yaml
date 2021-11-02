@@ -16,5 +16,5 @@ spec:
           serviceName: node-react
           servicePort: 80
   backend:
-    serviceName: node-react
+    serviceName: node-next
     servicePort: 80
