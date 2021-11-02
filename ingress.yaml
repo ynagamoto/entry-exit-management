@@ -11,9 +11,9 @@ spec:
         backend:
           serviceName: go-gin
           servicePort: 8080
-      - path: /app 
+      - path: /test
         backend:
-          serviceName: node-react
+          serviceName: node-next
           servicePort: 80
   backend:
     serviceName: node-next
