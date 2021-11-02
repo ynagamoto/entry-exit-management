@@ -16,7 +16,7 @@ export default function test({ posts }) {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch('http://management-api/');
+  const res = await fetch('http://management-api:8080/');
   const posts = await res.json();
   return { props: { posts  }  };
 }
