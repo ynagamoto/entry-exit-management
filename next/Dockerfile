@@ -1,4 +1,5 @@
 FROM node:latest
-RUN git clone https://github.com/munvei/entry-exit-management.git /usr/src/entry-exit-management
-WORKDIR /usr/src/entry-exit-management/next/web-app
+RUN cd /usr/src
+RUN git clone https://github.com/munvei/entry-exit-management.git
+WORKDIR entry-exit-management/next/web-app
 ENTRYPOINT npm run dev
