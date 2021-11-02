@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: node-next
+  name: node-next
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: node-next
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: node-next
+    spec:
+      containers:
+      - image: yoichi00/container-ren:node-next
+        name: node-next
+        env:
+        - name: API_HOST
+          value: management-api
+        resources: {}
+status: {}
