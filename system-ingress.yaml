@@ -11,10 +11,11 @@ spec:
         backend:
           serviceName: go-gin
           servicePort: 8080
-      - path: /test
+
+  - host: chat.192.168.99.109.nip.io
+    http:
+      paths:
+      - path: /
         backend:
           serviceName: node-next
           servicePort: 80
-  backend:
-    serviceName: node-next
-    servicePort: 80
