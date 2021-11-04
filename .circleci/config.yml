@@ -9,22 +9,10 @@ references:
     auth:
       username: $DOCKERHUB_USER
       password: $DOCKERHUB_PASSWORD
-  only_master: &only_master
-    filters:
-      branches:
-        only:
-        - master
-  staging_steps: &staging_steps
-    <<: *only_master
-    context:
-    - dockerhub
-  production_steps: &production_steps
-    <<: *only_master
-    context:
-    - dockerhub
 
 jobs:
   build:
+    context: dockerhub
     docker:
     - image: circleci/golang:1.15.8
       <<: *docker_hub_authentication
