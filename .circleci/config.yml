@@ -27,7 +27,7 @@ jobs:
   build:
     docker:
     - image: circleci/golang:1.15.8
-        <<: *docker_hub_authentication
+      <<: *docker_hub_authentication
     steps:
     - checkout
     - setup_remote_docker:
