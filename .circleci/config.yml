@@ -32,6 +32,11 @@ jobs:
         name: Export TAG
         command: TAG=go-gin$CIRCLE_BUILD_NUM
     - run:
+        name: Echo
+        command: |
+          echo $REPO
+          echo $TAG
+    - run:
         name: Docker Login
         command: echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USER --password-stdin
     - run:
