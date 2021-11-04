@@ -36,7 +36,7 @@ jobs:
         command: echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USER --password-stdin
     - run:
         name: Image Build
-        command: docker build -f gin/Dockerfile --tag $REPO:$TAG --no-cache
+        command: docker build -f gin/Dockerfile . --tag $REPO:$TAG --no-cache
     - run:
         name: Push Image
         command: docker push $REPO:$TAG
