@@ -9,6 +9,19 @@ references:
     auth:
       username: $DOCKERHUB_USER
       password: $DOCKERHUB_PASSWORD
+  only_master:
+    filters:
+      branches:
+        only:
+        - master
+  staging_steps: &staging_steps
+    <<: *only_master
+    context:
+    - dockerhub
+  production_steps: &production_steps
+    <<: *only_master
+    context:
+    - dockerhub
 
 jobs:
   build:
@@ -20,19 +33,19 @@ jobs:
     - setup_remote_docker:
       version: 19.03.13
     - run:
-      name: Export REPO
+      name: "Export REPO"
       command: REPO=$DOCKERHUB_REPO
     - run:
-      name: Export TAG
+      name: "Export TAG"
       command: TAG=go-gin$CIRCLE_BUILD_NUM
     - run:
-      name: Docker Login
-      command: echo $DOCKERHUB_PASSWORD | docker login -u $DOCKER_USER --password-stdin
+      name: "Docker Login"
+      command: echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USER --password-stdin
     - run:
-      name: Image Build
+      name: "Image Build"
       command: docker build -f gin/Dockerfile --tag $REPO:$TAG --no-cache
     - run:
-      name: Push Image
+      name: "Push Image"
       command: docker push $REPO:$TAG
 
 #     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
