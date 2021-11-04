@@ -27,10 +27,10 @@ jobs:
         version: 19.03.13
     - run:
         name: Export REPO
-        command: REPO=$DOCKERHUB_USER/$DOCKERHUB_REPO
+        command: export REPO=$DOCKERHUB_USER/$DOCKERHUB_REPO
     - run:
         name: Export TAG
-        command: TAG=go-gin$CIRCLE_BUILD_NUM
+        command: export TAG=go-gin$CIRCLE_BUILD_NUM
     - run:
         name: Echo
         command: |
