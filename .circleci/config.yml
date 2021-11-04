@@ -27,24 +27,19 @@ jobs:
         version: 19.03.13
     - run:
         name: Export REPO
-        command: export REPO="$DOCKERHUB_USER/$DOCKERHUB_REPO"
+        command: REPO=$DOCKERHUB_USER/$DOCKERHUB_REPO
     - run:
         name: Export TAG
-        command: export TAG="go-gin$CIRCLE_BUILD_NUM"
-    - run:
-        name: Echo
-        command: |
-          echo $REPO
-          echo $TAG
+        command: TAG=go-gin$CIRCLE_BUILD_NUM
     - run:
         name: Docker Login
         command: echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USER --password-stdin
     - run:
         name: Image Build
-        command: docker build -f gin/Dockerfile . --tag $REPO:$TAG --no-cache
+        command: docker build -f gin/Dockerfile . --tag yoichi00/containers:$TAG --no-cache
     - run:
         name: Push Image
-        command: docker push $REPO:$TAG
+        command: docker push yoichi00/containers:$TAG
 
 #     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
 #     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
