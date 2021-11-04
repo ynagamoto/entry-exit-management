@@ -4,15 +4,37 @@ version: 2.1
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
+references:
+  docker_hub_authentication: &docker_hub_authentication
+    auth:
+      username: $DOCKERHUB_USER
+      password: $DOCKERHUB_PASSWORD
+
 jobs:
   build:
     docker:
     - image: circleci/golang:1.15.8
+      <<: *docker_hub_authentication
     steps:
     - checkout
-    - run: echo "Hello World"
+    - setup_remote_docker:
+      version: 19.03.13
+    - run:
+      name: Export REPO
+      command: REPO=$DOCKERHUB_REPO
+    - run:
+      name: Export TAG
+      command: TAG=go-gin$CIRCLE_BUILD_NUM
+    - run:
+      name: Docker Login
+      command: echo $DOCKERHUB_PASSWORD | docker login -u $DOCKER_USER --password-stdin
+    - run:
+      name: Image Build
+      command: docker build -f gin/Dockerfile --tag $REPO:$TAG --no-cache
+    - run:
+      name: Push Image
+      command: docker push $REPO:$TAG
 
-#     working_directory: ~/repo
 #     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
 #     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
 #     docker:
