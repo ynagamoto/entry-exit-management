@@ -30,10 +30,10 @@ jobs:
         command: echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USER --password-stdin
     - run:
         name: Image Build
-        command: docker build -f gin/Dockerfile . --tag $DOCKERHUB_USER/$DOCKERHUB_REPO:go-gin$CIRCLE_BUILD_NUM --no-cache
+        command: docker build -f gin/Dockerfile . --tag $DOCKERHUB_REPO:go-gin$CIRCLE_BUILD_NUM --no-cache
     - run:
         name: Push Image
-        command: docker push $DOCKERHUB_USER/$DOCKERHUB_REPO:go-gin$CIRCLE_BUILD_NUM
+        command: docker push $DOCKERHUB_REPO:go-gin$CIRCLE_BUILD_NUM
 
 #     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
 #     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
