@@ -55,6 +55,7 @@ jobs:
         name: Edit Manifests
         command: |
           cd eem-manifests/manifests
+          git checkout -B update-image-tag-$CIRCLE_BUILD_NUM
           yq eval -i '.spec.template.spec.containers[0].image="yoichi00/containers:go-gin00"' go-gin-deploy.yaml 
     - run:
         name: Commit And Push This Changes
@@ -62,7 +63,7 @@ jobs:
           cd eem-manifests
           git add manifests/go-gin-deploy.yaml
           git commit -m "update image tag"
-          git push origin master
+          git push origin update-image-tag-$CIRCLE_BUILD_NUM
 
 #     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
 #     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
