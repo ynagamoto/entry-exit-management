@@ -56,7 +56,7 @@ jobs:
         command: |
           cd eem-manifests/manifests
           git checkout -B update-image-tag-$CIRCLE_BUILD_NUM
-          yq eval -i '.spec.template.spec.containers[0].image="yoichi00/containers:go-gin$CIRCLE_BUILD_NUM"' go-gin-deploy.yaml 
+          yq eval -i ".spec.template.spec.containers[0].image=\"yoichi00/containers:go-gin$CIRCLE_BUILD_NUM\"" go-gin-deploy.yaml 
     - run:
         name: Commit And Push This Changes
         command: |
