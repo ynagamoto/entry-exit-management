@@ -29,10 +29,35 @@ func main () {
       dbStatus = "Successful"
     }
     c.JSON(http.StatusOK, gin.H{
-      "Status": "OK",
+      "Status": "200",
       "DB": dbStatus,
     })
   })
+
+  r.GET("/api/hoge", func(c *gin.Context) {
+    res := module.DBConnect()
+    dbStatus := "Failed"
+    if res != nil {
+      dbStatus = "Successful"
+    }
+    c.JSON(http.StatusOK, gin.H{
+      "Status": "api/hoge",
+      "DB": dbStatus,
+    })
+  })
+
+  r.GET("/hoge", func(c *gin.Context) {
+    res := module.DBConnect()
+    dbStatus := "Failed"
+    if res != nil {
+      dbStatus = "Successful"
+    }
+    c.JSON(http.StatusOK, gin.H{
+      "Status": "hoge",
+      "DB": dbStatus,
+    })
+  })
+
 
   r.Run() // listen and serve on 0.0.0.0:8080 <- default
 }
