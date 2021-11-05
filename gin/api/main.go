@@ -29,7 +29,7 @@ func main () {
       dbStatus = "Successful"
     }
     c.JSON(http.StatusOK, gin.H{
-      "Status": "OK",
+      "Status": "200",
       "DB": dbStatus,
     })
   })
