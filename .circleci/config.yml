@@ -29,7 +29,7 @@ jobs:
         name: Docker Login
         command: echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USER --password-stdin
     - run:
-        name: Image Build
+        name: Build Image
         command: docker build -f gin/Dockerfile . --tag $DOCKERHUB_REPO:go-gin$CIRCLE_BUILD_NUM --no-cache
     - run:
         name: Push Image
@@ -51,7 +51,7 @@ jobs:
         name: Install yq
         command: |
           export VERSION=v4.14.1 && export BINARY=yq_linux_amd64
-          wget https://github.com/mikefarah/yq/releases/download/${VERSION}/${BINARY}.tar.gz -O - | tar xz && mv ${BINARY} /usr/bin/yq
+          wget https://github.com/mikefarah/yq/releases/download/${VERSION}/${BINARY}.tar.gz -O - | tar xz && sudo mv ${BINARY} /usr/bin/yq
     - run:
         name: Edit Manifests
         command: yq eval -i '.spec.template.spec.containers[0].image="yoichi00/containers:go-gin00"' go-gin-deploy.yaml 
