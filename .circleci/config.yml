@@ -36,7 +36,7 @@ jobs:
         command: docker push $DOCKERHUB_REPO:go-gin$CIRCLE_BUILD_NUM
     - run:
         name: Install yq
-        command: snap install yq --channel=v3/stable
+        command: apt install yq=v3/stable
     - run:
         name: Setting Github Config
         command: |
