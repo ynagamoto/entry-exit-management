@@ -60,6 +60,7 @@ jobs:
         name: Commit And Push This Changes
         command: |
           cd eem-manifests
+          git add manifests/go-gin-deploy.yaml
           git commit -m "update image tag"
           git push origin master
 
