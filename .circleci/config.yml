@@ -34,6 +34,31 @@ jobs:
     - run:
         name: Push Image
         command: docker push $DOCKERHUB_REPO:go-gin$CIRCLE_BUILD_NUM
+    - run:
+        name: Install yq
+        command: snap install yq --channel=v3/stable
+    - run:
+        name: Setting Github Config
+        command: |
+          git config --global user.name  "munvei"
+          git config --global user.email "yoichi.nagamoto@gmail.com"
+    - run:
+        name: Clone Manifests REPO 
+        command: |
+          git clone git@github.com:munvei/eem-manifests.git
+          cd eem-manifests/manifests
+    - run:
+        name: Edit Manifests
+        command: yq write go-gin-deploy.yaml spec.template.spec.containers[0].image $DOCKERHUB_REPO:go-gin$CIRCLE_BUILD_NUM
+          
+    - add_ssh_keys:
+        fingerprints:
+        - "<fingerprints>"
+    - run:
+        name: Commit And Push This Changes
+        command: |
+          git commit -m "update image tag"
+          git push origin master
 
 #     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
 #     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
