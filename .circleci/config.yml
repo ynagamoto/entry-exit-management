@@ -35,25 +35,26 @@ jobs:
         name: Push Image
         command: docker push $DOCKERHUB_REPO:go-gin$CIRCLE_BUILD_NUM
     - run:
-        name: Install yq
-        command: sudo apt install yq=v3/stable
-    - run:
         name: Setting Github Config
         command: |
           git config --global user.name  "munvei"
           git config --global user.email "yoichi.nagamoto@gmail.com"
+    - add_ssh_keys:
+        fingerprints:
+        - "<fingerprints>"
     - run:
         name: Clone Manifests REPO 
         command: |
           git clone git@github.com:munvei/eem-manifests.git
           cd eem-manifests/manifests
     - run:
+        name: Install yq
+        command: |
+          export VERSION=v4.14.1 && export BINARY=yq_linux_amd64
+          wget https://github.com/mikefarah/yq/releases/download/${VERSION}/${BINARY}.tar.gz -O - | tar xz && mv ${BINARY} /usr/bin/yq
+    - run:
         name: Edit Manifests
-        command: yq write go-gin-deploy.yaml spec.template.spec.containers[0].image $DOCKERHUB_REPO:go-gin$CIRCLE_BUILD_NUM
-          
-    - add_ssh_keys:
-        fingerprints:
-        - "<fingerprints>"
+        command: yq eval -i '.spec.template.spec.containers[0].image="yoichi00/containers:go-gin00"' go-gin-deploy.yaml 
     - run:
         name: Commit And Push This Changes
         command: |
