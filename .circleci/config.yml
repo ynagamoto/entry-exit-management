@@ -13,10 +13,10 @@ workflows:
           context: dockerhub
           requires:
             - build-image
-          filters:
-            branches:
-              only:
-                main
+          #filters:
+          #  branches:
+          #    only:
+          #      main
 
 references:
   docker_hub_authentication: &docker_hub_authentication
@@ -48,6 +48,7 @@ jobs:
       - image: circleci/golang:1.15.8
         <<: *docker_hub_authentication
     steps:
+      - checkout
       - run:
           name: Setting Github Config
           command: |
