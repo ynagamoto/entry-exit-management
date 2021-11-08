@@ -16,8 +16,7 @@ workflows:
           filters:
             branches:
               only:
-                master
-
+                main
 
 references:
   docker_hub_authentication: &docker_hub_authentication
