@@ -93,11 +93,12 @@ jobs:
             cd eem-manifests/manifests
             git checkout -B update-image-tag-$CIRCLE_BUILD_NUM
             yq eval -i ".spec.template.spec.containers[0].image=\"$DOCKERHUB_REPO:go-gin$CIRCLE_BUILD_NUM\"" go-gin-deploy.yaml 
+            yq eval -i ".spec.template.spec.containers[0].image=\"$DOCKERHUB_REPO:node-next$CIRCLE_BUILD_NUM\"" node-next-deploy.yaml 
       - run:
           name: Commit And Push This Changes
           command: |
             cd eem-manifests
-            git add manifests/go-gin-deploy.yaml
+            git add manifests/.
             git commit -m "update image tag"
             git push origin update-image-tag-$CIRCLE_BUILD_NUM
 
