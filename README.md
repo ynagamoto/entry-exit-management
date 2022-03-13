@@ -7,7 +7,7 @@ Android App で入退出をチェックし Google Calendar に記録する
 - felica のために Android App を使う
 - Google API のために Web API 作って使いやすくする
 - ブラウザからユーザ情報を管理したいので Webアプリ を作る
-- 個人情報を扱うので TLS 必須
+- 個人情報を扱うので TLS 必須，脆弱性スキャンもする
 - 複数のコンテナを使うので Kubernetes 上で動かしたい
 - タスク管理は jira を使う
 
