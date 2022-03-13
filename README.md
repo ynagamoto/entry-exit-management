@@ -1,6 +1,6 @@
 # entry-exit-management
 ## What
-- 人の入退出を管理するアプリケーション
+- ICカードを使って人の入退出を管理するアプリケーション
 
 ## Will
 Android App で入退出をチェックし Google Calendar に記録する
