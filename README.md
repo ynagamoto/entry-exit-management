@@ -15,8 +15,8 @@ Android App で入退出をチェックし Google Calendar に記録する
 
 ## 構成
 - nginx・・・リバースプロキシ <- ingress がリバースプロキシのような機能を提供している
-- node(react)・・・Webアプリケーション -> サーバサイドレンダリングがしたいので Next.js を使うように変更
-- golang(gin)・・・Web API
+- node(Next.js)・・・Webアプリケーション -> サーバサイドレンダリングがしたいので React から Next.js を使うように変更
+- Gin(golang)・・・Web API
 - mariadb・・・データベース
 - マニフェスト・・・https://github.com/munvei/eem-manifests で管理する
 - Android App・・・別リポジトリで管理する予定
