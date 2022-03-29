@@ -3,6 +3,7 @@
 - ICカードを使って人の入退出を管理するアプリケーション
 
 ## Will
+![[pic/eem-full-map.png]]
 Android App で入退出をチェックし Google Calendar に記録する
 - felica のために Android App を使う
 - Google API のために Web API 作って使いやすくする
@@ -14,7 +15,7 @@ Android App で入退出をチェックし Google Calendar に記録する
 - タスク管理は jira を使う
 
 ## 構成
-![[pdf/eem-full-map.pdf]]
+![[pic/eem-config-map.png]]
 - nginx・・・リバースプロキシ <- ingress がリバースプロキシのような機能を提供している
 - node(Next.js)・・・Webアプリケーション -> サーバサイドレンダリングがしたいので React から Next.js を使うように変更
 - Gin(golang)・・・Web API
