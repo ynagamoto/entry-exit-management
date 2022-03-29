@@ -14,7 +14,7 @@ Android App で入退出をチェックし Google Calendar に記録する
 - タスク管理は jira を使う
 
 ## 構成
-![[./pdf/eem-full-map.pdf]]
+![[pdf/eem-full-map.pdf]]
 - nginx・・・リバースプロキシ <- ingress がリバースプロキシのような機能を提供している
 - node(Next.js)・・・Webアプリケーション -> サーバサイドレンダリングがしたいので React から Next.js を使うように変更
 - Gin(golang)・・・Web API
